@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Consultar Filtros Gasolina</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+    }
+    .formulario {
+      margin-bottom: 20px;
+    }
+    .boton {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-family: sans-serif;
+    }
+    .boton:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Consulta de Filtros de Gasolina</h2>
+
+  <!-- Formulario para consultar -->
+  <div class="formulario">
+    <h3>Consultar por descripción</h3>
+    <input type="text" id="descripcionConsulta" placeholder="Buscar descripción">
+    <button onclick="consultarFiltro()">Buscar</button>
+    <button onclick="restaurarTabla()">Restaurar</button>
+  </div>
+
+  <table id="tablaFiltros">
+    <thead>
+      <tr>
+        <th>Cantidad</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>12</td><td>Filtro de combustible tipo cartucho</td></tr>
+      <tr><td>8</td><td>Filtro de gasolina para Toyota Hilux</td></tr>
+      <tr><td>5</td><td>Filtro de gasolina para Ford Escape</td></tr>
+      <tr><td>10</td><td>Filtro de gasolina para Honda CR-V</td></tr>
+      <tr><td>4</td><td>Filtro de gasolina para Chevrolet Spark</td></tr>
+      <tr><td>7</td><td>Filtro de gasolina para Nissan Versa</td></tr>
+      <tr><td>9</td><td>Filtro de gasolina para Mazda BT-50</td></tr>
+      <tr><td>6</td><td>Filtro de gasolina para Volkswagen Gol</td></tr>
+      <tr><td>3</td><td>Filtro de gasolina para Renault Logan</td></tr>
+      <tr><td>2</td><td>Filtro de gasolina con regulador integrado</td></tr>
+      <tr><td>14</td><td>Filtro de gasolina para sistema EFI</td></tr>
+      <tr><td>11</td><td>Filtro de gasolina para motor carburado</td></tr>
+      <tr><td>5</td><td>Filtro de gasolina Bosch universal</td></tr>
+      <tr><td>6</td><td>Filtro de combustible metálico universal</td></tr>
+    </tbody>
+    </tbody>
+  </table>
+
+  <script>
+    function consultarFiltro() {
+      const filtro = document.getElementById("descripcionConsulta").value.trim().toLowerCase();
+      const filas = document.getElementById("tablaFiltros").getElementsByTagName("tbody")[0].rows;
+      let encontrado = false;
+
+      for (let i = 0; i < filas.length; i++) {
+        const descripcion = filas[i].cells[1].textContent.trim().toLowerCase();
+        if (descripcion.includes(filtro)) {
+          filas[i].style.display = ""; // mostrar
+          encontrado = true;
+        } else {
+          filas[i].style.display = "none"; // ocultar
+        }
+      }
+
+      if (!encontrado) {
+        alert("No se encontraron coincidencias para: " + filtro);
+      }
+    }
+
+    function restaurarTabla() {
+      const filas = document.getElementById("tablaFiltros").getElementsByTagName("tbody")[0].rows;
+      for (let i = 0; i < filas.length; i++) {
+        filas[i].style.display = ""; // mostrar todas las filas
+      }
+      document.getElementById("descripcionConsulta").value = "";
+    }
+  </script>
+
+  <div style="text-align: center;">
+    <a href="file:///E:/copia%20proyecto%20refaccionaria%20zamudio%20y%20cesar/agregar,%20modificar,%20eliminar%20y%20consulta%20desde%20visual/consulta/consulta%200.html" class="boton">Regresar</a>
+  </div>
+
+</body>
+</html>

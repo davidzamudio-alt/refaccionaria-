@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Consultar Filtros Aire</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+    }
+    .formulario {
+      margin-bottom: 20px;
+    }
+    .boton {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-family: sans-serif;
+    }
+    .boton:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Consulta de Filtros de Aire</h2>
+
+  <!-- Formulario para consultar -->
+  <div class="formulario">
+    <h3>Consultar por descripción</h3>
+    <input type="text" id="descripcionConsulta" placeholder="Buscar descripción">
+    <button onclick="consultarFiltro()">Buscar</button>
+    <button onclick="restaurarTabla()">Restaurar</button>
+  </div>
+
+  <table id="tablaFiltros">
+    <thead>
+      <tr>
+        <th>Cantidad</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr><td>5</td><td>Filtro de aire seco tipo panel</td></tr>
+      <tr><td>0</td><td>Filtro de aire cilíndrico</td></tr>
+      <tr><td>7</td><td>Filtro de aire cónico deportivo</td></tr>
+      <tr><td>8</td><td>Filtro de aire de cabina</td></tr>
+      <tr><td>1</td><td>Filtro de aire tipo cartucho</td></tr>
+      <tr><td>4</td><td>Filtro de aire para motor Cummins</td></tr>
+      <tr><td>7</td><td>Filtro de aire para motor Caterpillar</td></tr>
+      <tr><td>7</td><td>Filtro de aire para Toyota Corolla</td></tr>
+      <tr><td>1</td><td>Filtro de aire para Nissan NP300</td></tr>
+      <tr><td>1</td><td>Filtro de aire para Ford F-150</td></tr>
+      <tr><td>2</td><td>Filtro de aire para Chevrolet Aveo</td></tr>
+      <tr><td>2</td><td>Filtro de aire para Honda Civic</td></tr>
+      <tr><td>0</td><td>Filtro de aire para Mazda 3</td></tr>
+      <tr><td>8</td><td>Filtro de aire para Volkswagen Jetta</td></tr>
+      <tr><td>20</td><td>Filtro de aire para Renault Duster</td></tr>
+      <tr><td>7</td><td>Filtro de aire para Hyundai Tucson</td></tr>
+      <tr><td>18</td><td>Filtro de aire para KIA Sportage</td></tr>
+      <tr><td>0</td><td>Filtro de aire para camión Freightliner</td></tr>
+      <tr><td>0</td><td>Filtro de aire para maquinaria agrícola John Deere</td></tr>
+      <tr><td>2</td><td>Filtro de aire lavable K&amp;N</td></tr>
+    </tbody>
+    </tbody>
+  </table>
+
+  <script>
+    function consultarFiltro() {
+      const filtro = document.getElementById("descripcionConsulta").value.trim().toLowerCase();
+      const filas = document.getElementById("tablaFiltros").getElementsByTagName("tbody")[0].rows;
+      let encontrado = false;
+
+      for (let i = 0; i < filas.length; i++) {
+        const descripcion = filas[i].cells[1].textContent.trim().toLowerCase();
+        if (descripcion.includes(filtro)) {
+          filas[i].style.display = ""; // mostrar
+          encontrado = true;
+        } else {
+          filas[i].style.display = "none"; // ocultar
+        }
+      }
+
+      if (!encontrado) {
+        alert("No se encontraron coincidencias para: " + filtro);
+      }
+    }
+
+    function restaurarTabla() {
+      const filas = document.getElementById("tablaFiltros").getElementsByTagName("tbody")[0].rows;
+      for (let i = 0; i < filas.length; i++) {
+        filas[i].style.display = ""; // mostrar todas las filas
+      }
+      document.getElementById("descripcionConsulta").value = "";
+    }
+  </script>
+
+  <div style="text-align: center;">
+    <a href="file:///E:/copia%20proyecto%20refaccionaria%20zamudio%20y%20cesar/agregar,%20modificar,%20eliminar%20y%20consulta%20desde%20visual/consulta/consulta%200.html" class="boton">Regresar</a>
+  </div>
+
+</body>
+</html>
